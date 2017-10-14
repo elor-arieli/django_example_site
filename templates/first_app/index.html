@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luny and Pandy</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "CSS/mystyle.css" %}">
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1 id="me">Hello there! Luna is white and pandi is black & white</h1>
+        <img HEIGHT="480" width="640" src="{% static "images/first.jpg" %}" alt="Oh No! image not found!">
+        <p></p>
+        <p></p>
+        <h2 align="center">here are your records:</h2>
+        <div class="access_rec" align="center">
+            {%  if access_records %}
+            <table>
+                <thead align="center">
+                    <th align="center">Site name</th>
+                    <th align="center">Date Accessed</th>
+                </thead>
+                {%  for acc in access_records %}
+                <tr>
+                    <td align="center">{{ acc.name }}</td>
+                    <td align="center">{{ acc.date }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            {% else %}
+                <p>No records found! :(</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    {% if users %}
+        <ol>
+            {% for user in users %}
+        <li>User:
+                <ul>
+                    <li>first name: {{ user.First_name }}</li>
+                    <li>last name: {{ user.Last_name }}</li>
+                    <li>email: {{ user.Email }}</li>
+                </ul>
+        </li>
+        {% endfor %}
+        </ol>
+    {% else %}
+    <p>no users found</p>
+    {% endif %}
+</div>
+</body>
+</html>
